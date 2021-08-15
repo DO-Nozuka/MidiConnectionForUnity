@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # MidiConnectionForUnity
 =======
 # MidiConnectionForUnity
@@ -16,3 +17,7 @@ Midi Connection For Unity (with Dono.Minis)
   * Message Channel Filter
   * Message Status Filter
 >>>>>>> origin/main
+=======
+# MidiConnectionForUnity
+Midi Connection For Unity (with Dono.Minis)
+>>>>>>> develop

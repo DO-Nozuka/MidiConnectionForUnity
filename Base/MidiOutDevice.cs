@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-namespace Dono.MidiUtilities.UnityDevice
+namespace Dono.MidiConnectionForUnity.Base
 {
-    public abstract class MidiOutDevice : MonoBehaviour
+    public abstract class MidiOutDevice : MidiDevice
     {
-        [SerializeField] private List<IObserver<MidiMessage>> MidiOutPort;
+        [SerializeField] private List<MidiInDevice> MidiOutPort;
         protected Subject<MidiMessage> subject;
 
         private void Start()

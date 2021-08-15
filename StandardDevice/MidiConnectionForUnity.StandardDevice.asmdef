@@ -1,0 +1,17 @@
+{
+    "name": "MidiConnectionForUnity.StandardDevice",
+    "rootNamespace": "",
+    "references": [
+        "Message",
+        "MidiConnectionForUnity.Base"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
