@@ -1,0 +1,13 @@
+{
+  "author": "Daiki Onozuka",
+  "dependencies": {
+  },
+  "description": "Midi Connection For Unity(with Dono.Minis)",
+  "displayName": "MidiConnectionForUnity",
+  "keywords": [ "unity", "MIDI" ],
+  "license": "MIT",
+  "name": "com.donozuka.midiconnection",
+  "repository": "github:DO-Nozuka/MidiConnectionForUnity",
+  "unity": "2020.1",
+  "version": "0.0.1"
+}
