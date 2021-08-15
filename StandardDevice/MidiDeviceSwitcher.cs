@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace MidiConnectionForUnity.StandardDevice
 {
-    public class MidiSwitcher : MidiInOutDevice
+    public class MidiDeviceSwitcher : MidiInOutDevice
     {
         [SerializeField] private bool ToMainSwitch;
         [SerializeField] private List<MidiInDevice> SubMidiOutPort;

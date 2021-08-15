@@ -4,7 +4,7 @@ using UnityEngine;
 using Dono.MidiConnectionForUnity.Base;
 using Dono.MidiUtilities.Runtime;
 
-public class MidiSimpleLogger : MidiInDevice
+public class SimpleMessageLogger : MidiInDevice
 {
     public override void OnNext(MidiMessage value)
     {
