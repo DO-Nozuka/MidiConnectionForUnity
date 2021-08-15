@@ -13,7 +13,7 @@ namespace MidiConnectionForUnity.StandardDevice
         [SerializeField] private List<MidiInDevice> SubMidiOutPort;
         protected Subject<MidiMessage> subSubject;
 
-        private new void Start()        //Caution: Hide base Start()
+        public new void Start()        //Caution: Hide base Start()
         {
             base.Start();
 

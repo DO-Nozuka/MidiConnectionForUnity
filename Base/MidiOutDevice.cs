@@ -9,9 +9,9 @@ namespace Dono.MidiConnectionForUnity.Base
     public abstract class MidiOutDevice : MidiDevice
     {
         [SerializeField] protected List<MidiInDevice> MidiOutPort;
-        protected Subject<MidiMessage> subject;
+        protected Subject<MidiMessage> subject = new Subject<MidiMessage>();
 
-        protected void Start()
+        public void Start()
         {
             if (MidiOutPort != null)
             {
