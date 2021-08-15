@@ -2,8 +2,9 @@
     "name": "MidiConnectionForUnity.StandardDevice",
     "rootNamespace": "",
     "references": [
-        "Message",
-        "MidiConnectionForUnity.Base"
+        "GUID:e348eb0bc7ba495499081c854aa42f2d",
+        "GUID:3faa56ac2b29e7f4fb9774f6d9b4f9e7",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
