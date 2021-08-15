@@ -1,5 +1,5 @@
 {
-    "name": "MidiConnectionForUnity.Template",
+    "name": "MidiConnectionForUnity.StandardDevice",
     "rootNamespace": "",
     "references": [
         "Message",
