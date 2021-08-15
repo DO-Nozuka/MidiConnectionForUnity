@@ -1,10 +1,7 @@
 using Dono.MidiUtilities.Runtime;
 using System;
-using System.Collections.Generic;
-using UniRx;
-using UnityEngine;
 
-namespace Dono.MidiUtilities.UnityDevice
+namespace Dono.MidiConnectionForUnity.Base
 {
     public abstract class MidiInOutDevice : MidiOutDevice, IObserver<MidiMessage>
     {
