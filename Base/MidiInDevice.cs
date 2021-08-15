@@ -1,22 +1,13 @@
 using Dono.MidiUtilities.Runtime;
 using System;
-using UniRx;
 using UnityEngine;
 
-namespace Dono.MidiUtilities.UnityDevice
+namespace Dono.MidiConnectionForUnity.Base
 {
-    public abstract class MidiInDevice : MonoBehaviour, IObserver<MidiMessage>
+    public abstract class MidiInDevice : MidiDevice, IObserver<MidiMessage>
     {
-        public void OnCompleted()
-        {
-        }
-
-        public void OnError(Exception error)
-        {
-        }
-
-        public void OnNext(MidiMessage value)
-        {
-        }
+        public virtual void OnCompleted() { }
+        public virtual void OnError(Exception error) { }
+        public virtual void OnNext(MidiMessage value) { }
     }
 }
