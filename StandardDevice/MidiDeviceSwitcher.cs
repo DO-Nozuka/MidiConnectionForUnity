@@ -9,9 +9,12 @@ namespace MidiConnectionForUnity.StandardDevice
 {
     public class MidiDeviceSwitcher : MidiInOutDevice
     {
+        public override string DefaultDeviceName => "MidiSwitcher";
+
         [SerializeField] private bool ToMainSwitch;
         [SerializeField] private List<MidiInDevice> SubMidiOutPort;
         protected Subject<MidiMessage> subSubject;
+
 
         public new void Start()        //Caution: Hide base Start()
         {
@@ -33,5 +36,6 @@ namespace MidiConnectionForUnity.StandardDevice
             else
                 subSubject.OnNext(value);
         }
+
     }
 }

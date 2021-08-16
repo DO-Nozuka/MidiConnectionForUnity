@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Dono.MidiConnectionForUnity.Base
 {
-    public abstract class MidiInDevice : MidiDevice, IObserver<MidiMessage>
+    public abstract class MidiInDevice : MidiDevice, IMidiInDevice
     {
         public virtual void OnCompleted() { }
         public virtual void OnError(Exception error) { }

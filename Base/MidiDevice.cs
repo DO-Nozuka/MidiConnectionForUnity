@@ -6,6 +6,14 @@ namespace Dono.MidiConnectionForUnity.Base
 {
     public abstract class MidiDevice : MonoBehaviour
     {
-        public string DeviceName = "";
+        [SerializeField] private string DeviceName = "";
+        public abstract string DefaultDeviceName { get; }
+
+        public string GetDeviceName() => DeviceName;
+
+        public void Reset()
+        {
+            DeviceName = DefaultDeviceName;
+        }
     }
 }

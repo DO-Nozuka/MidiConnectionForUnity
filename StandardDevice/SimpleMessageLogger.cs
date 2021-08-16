@@ -4,10 +4,20 @@ using UnityEngine;
 using Dono.MidiConnectionForUnity.Base;
 using Dono.MidiUtilities.Runtime;
 
-public class SimpleMessageLogger : MidiInDevice
+namespace MidiConnectionForUnity.StandardDevice
 {
-    public override void OnNext(MidiMessage value)
+    public class SimpleMessageLogger : MidiInDevice
     {
-        Debug.Log(value);
+        public override string DefaultDeviceName => "SimpleMessageLogger";
+        public override void OnNext(MidiMessage value)
+        {
+            string log = "";
+            log += $"[{GetDeviceName()}]";
+            log += $"msg;{value}";
+            Debug.Log(log);
+        }
+
+
+
     }
 }
