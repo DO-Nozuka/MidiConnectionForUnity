@@ -11,16 +11,6 @@ namespace MidiConnectionForUnity.StandardDevice
     {
         public override string DefaultDeviceName => "SimpleMessageLogger";
 
-        public override void OnCompleted()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void OnError(Exception error)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void OnNext(MidiMessage value)
         {
             string log = "";
@@ -28,8 +18,5 @@ namespace MidiConnectionForUnity.StandardDevice
             log += $"Message:{value}";
             Debug.Log(log);
         }
-
-
-
     }
 }

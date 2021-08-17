@@ -9,8 +9,8 @@ namespace Dono.MidiConnectionForUnity.Base
     [ExecuteAlways]
     public abstract class MidiInDevice : MidiInDeviceBase
     {
-        private void Update()
-        {
+        private new void Update()
+        {            
             if (MidiOutPort != null)
             {
                 MidiOutPort.Clear();
