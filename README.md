@@ -5,6 +5,7 @@ Midi Connection For Unity (with Dono.Minis)
 ##Futures
 * base on MidiInDevice
   * Simple Message Logger
+  * Filtered Message Logger
 * base on MidiOutDevice
 * base on MidiInOutDevice
   * Midi Device Switcher
@@ -13,7 +14,6 @@ Midi Connection For Unity (with Dono.Minis)
 
 ## Future to be added
 * base on MidiInDevice
-  * Filtered Message Logger
 * base on MidiOutDevice
   * Message Generator
 * base on MidiInOutDevice
