@@ -1,13 +1,21 @@
 using Dono.MidiUtilities.Runtime;
 using System;
+using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 namespace Dono.MidiConnectionForUnity.Base
 {
-    public abstract class MidiInDevice : MidiDevice, IMidiInDevice
+    [ExecuteAlways]
+    public abstract class MidiInDevice : MidiInDeviceBase
     {
-        public virtual void OnCompleted() { }
-        public virtual void OnError(Exception error) { }
-        public virtual void OnNext(MidiMessage value) { }
+        private void Update()
+        {
+            if (MidiOutPort != null)
+            {
+                MidiOutPort.Clear();
+                MidiOutPort = null;
+            }  
+        }
     }
 }
