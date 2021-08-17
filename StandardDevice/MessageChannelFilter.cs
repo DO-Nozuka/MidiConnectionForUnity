@@ -9,6 +9,8 @@ namespace MidiConnectionForUnity.StandardDevice
 {
     public class MessageChannelFilter : MidiInOutDevice
     {
+        private bool[] _channelEnable = new bool[16];
+
         [Header("Channel Enable")]
         [SerializeField] private bool channel1 = true;
         [SerializeField] private bool channel2 = true;
@@ -26,9 +28,6 @@ namespace MidiConnectionForUnity.StandardDevice
         [SerializeField] private bool channel14 = true;
         [SerializeField] private bool channel15 = true;
         [SerializeField] private bool channel16 = true;
-
-        private bool[] _channelEnable = new bool[16];
-
         public override string DefaultDeviceName => "MessageChannelFilter";
 
         public override void OnNext(MidiMessage value)
@@ -38,7 +37,48 @@ namespace MidiConnectionForUnity.StandardDevice
                 subject.OnNext(value);            
         }
 
-        public void UpdateChannelEnable()
+        public void SetAllEnable()
+        {
+            channel1 = true;
+            channel2 = true;
+            channel3 = true;
+            channel4 = true;
+            channel5 = true;
+            channel6 = true;
+            channel7 = true;
+            channel8 = true;
+            channel9 = true;
+            channel10 = true;
+            channel11 = true;
+            channel12 = true;
+            channel13 = true;
+            channel14 = true;
+            channel15 = true;
+            channel16 = true;
+        }
+
+        public void SetAllDisable()
+        {
+            channel1 = false;
+            channel2 = false;
+            channel3 = false;
+            channel4 = false;
+            channel5 = false;
+            channel6 = false;
+            channel7 = false;
+            channel8 = false;
+            channel9 = false;
+            channel10 = false;
+            channel11 = false;
+            channel12 = false;
+            channel13 = false;
+            channel14 = false;
+            channel15 = false;
+            channel16 = false;
+        }
+
+
+        private void UpdateChannelEnable()
         {
             _channelEnable[0] = channel1;
             _channelEnable[1] = channel2;
