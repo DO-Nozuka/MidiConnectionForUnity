@@ -1,5 +1,6 @@
 using Dono.MidiConnectionForUnity.Base;
 using Dono.MidiUtilities.Runtime;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
@@ -11,9 +12,9 @@ namespace MidiConnectionForUnity.StandardDevice
     {
         public override string DefaultDeviceName => "MidiSwitcher";
 
-        [SerializeField] private bool ToMainSwitch;
+        [SerializeField] private bool ToMainSwitch = true;
         [SerializeField] private List<MidiInDevice> SubMidiOutPort;
-        protected Subject<MidiMessage> subSubject;
+        protected Subject<MidiMessage> subSubject = new Subject<MidiMessage>();
 
 
         public new void Start()        //Caution: Hide base Start()
@@ -24,7 +25,7 @@ namespace MidiConnectionForUnity.StandardDevice
             {
                 for (int i = 0; i < SubMidiOutPort.Count; i++)
                 {
-                    subject.Subscribe(SubMidiOutPort[i]);
+                    subSubject.Subscribe(SubMidiOutPort[i]);
                 }
             }
         }
@@ -37,5 +38,14 @@ namespace MidiConnectionForUnity.StandardDevice
                 subSubject.OnNext(value);
         }
 
+        public override void OnCompleted()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void OnError(Exception error)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
