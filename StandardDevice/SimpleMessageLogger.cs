@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Dono.MidiConnectionForUnity.Base;
-using Dono.MidiUtilities.Runtime;
+using Dono.Midi.Runtime;
 using System;
 
 namespace MidiConnectionForUnity.StandardDevice

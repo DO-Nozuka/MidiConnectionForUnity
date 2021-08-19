@@ -1,5 +1,5 @@
 using Dono.MidiConnectionForUnity.Base;
-using Dono.MidiUtilities.Runtime;
+using Dono.Midi.Runtime;
 using UnityEngine;
 
 namespace MidiConnectionForUnity.StandardDevice
