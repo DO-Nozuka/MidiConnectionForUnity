@@ -11,6 +11,6 @@ namespace MidiConnectionForUnity.StandardDevice
 
         //Note On / Off
         //Note Velocity(Off Velocity‚à‹L˜^‚·‚é)
-        //
+        //and more...
     }
 }

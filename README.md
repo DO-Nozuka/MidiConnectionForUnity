@@ -14,6 +14,7 @@ Midi Connection For Unity (with Dono.Minis)
 
 ## Future to be added
 * base on MidiInDevice
+  * SynthModule(in progress)
 * base on MidiOutDevice
   * Message Generator
 * base on MidiInOutDevice
