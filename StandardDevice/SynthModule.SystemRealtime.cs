@@ -1,0 +1,23 @@
+using Dono.Midi.Runtime;
+using Dono.Midi.Runtime.Types;
+using Dono.MidiConnectionForUnity.Base;
+
+namespace MidiConnectionForUnity.StandardDevice
+{
+    public partial class SynthModule :
+       MidiInDevice,
+       IMidiModule
+    {
+        #region OnSystemRealtime
+
+        public virtual void OnTimingClock(MidiMessage message) { }
+        public virtual void OnUndefinedF9(MidiMessage message) { }
+        public virtual void OnStart(MidiMessage message) { }
+        public virtual void OnContinue(MidiMessage message) { }
+        public virtual void OnStop(MidiMessage message) { }
+        public virtual void OnUndefinedFD(MidiMessage message) { }
+        public virtual void OnActiveSensing(MidiMessage message) { }
+        public virtual void OnReset(MidiMessage message) { }
+        #endregion
+    }
+}
