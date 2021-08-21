@@ -36,7 +36,7 @@ namespace MidiConnectionForUnity.StandardDevice
         }
         public virtual void OnPitchBendChange(MidiMessage message)
         {
-            ChannelState[message.Channel].PitchBend = MidiUtilities.PitchByteToValue((message.Data1, message.Data2));
+            ChannelState[message.Channel].PitchBend = (short)MidiUtilities.PitchByteToValue((message.Data1, message.Data2));
         }
     }
 }
