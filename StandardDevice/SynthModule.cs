@@ -16,5 +16,13 @@ namespace MidiConnectionForUnity.StandardDevice
 
             AnyMessageSplitter(message);
         }
+
+        public SynthModule()
+        {
+            for (int i = 0; i < 16; i++)
+            {
+                ChannelState[i] = new SynthModuleChannelState();
+            }
+        }
     }
 }

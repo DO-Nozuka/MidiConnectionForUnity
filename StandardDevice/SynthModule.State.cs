@@ -8,9 +8,24 @@ namespace MidiConnectionForUnity.StandardDevice
        MidiInDevice,
        IMidiModule
     {
+        public SynthModuleChannelState[] ChannelState { get; internal set; } = new SynthModuleChannelState[16];
+    }
 
+    public class SynthModuleChannelState
+    {
         //Note On / Off
-        //Note Velocity(Off Velocity‚à‹L˜^‚·‚é)
+        public bool[] IsNoteOn { get; internal set; } = new bool[128];
+        //Note Velocity(Record Off Velocity too)
+        public byte[] Velocity { get; internal set; } = new byte[128];
+        //PolyphonicKeyPressure
+        public byte[] KeyPressure { get; internal set; } = new byte[128];
+        //ProgramChange
+        public byte Program { get; internal set; }
+        //ChannelPressure
+        public byte ChannelPressure { get; internal set; }
+        //PitchBend
+        public short PitchBend { get; internal set; }
+
         //and more...
     }
 }

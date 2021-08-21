@@ -11,15 +11,32 @@ namespace MidiConnectionForUnity.StandardDevice
        MidiInDevice,
        IMidiModule
     {
- #region OnChannelVoice
-
-        public virtual void OnNoteOff(MidiMessage message) { }
-        public virtual void OnNoteOn(MidiMessage message) { }
-        public virtual void OnPolyphonicKeyPressure(MidiMessage message) { }
+        public virtual void OnNoteOff(MidiMessage message)
+        {
+            ChannelState[message.Channel].IsNoteOn[message.Data1] = true;
+            ChannelState[message.Channel].Velocity[message.Data1] = message.Data2; 
+        }
+        public virtual void OnNoteOn(MidiMessage message)
+        {
+            ChannelState[message.Channel].IsNoteOn[message.Data1] = false;
+            ChannelState[message.Channel].Velocity[message.Data1] = message.Data2; 
+        }
+        public virtual void OnPolyphonicKeyPressure(MidiMessage message)
+        {
+            ChannelState[message.Channel].KeyPressure[message.Data1] = message.Data2;
+        }
         // 0xBn void ControlChangeSplitter()
-        public virtual void OnProgramChange(MidiMessage message) { }
-        public virtual void OnChannelPressure(MidiMessage message) { }
-        public virtual void OnPitchBendChange(MidiMessage message) { }
-        #endregion
+        public virtual void OnProgramChange(MidiMessage message)
+        {
+            ChannelState[message.Channel].Program = message.Data1;
+        }
+        public virtual void OnChannelPressure(MidiMessage message)
+        {
+            ChannelState[message.Channel].ChannelPressure = message.Data1;
+        }
+        public virtual void OnPitchBendChange(MidiMessage message)
+        {
+            ChannelState[message.Channel].PitchBend = MidiUtilities.PitchByteToValue((message.Data1, message.Data2));
+        }
     }
 }
