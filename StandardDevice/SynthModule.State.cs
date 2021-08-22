@@ -9,6 +9,16 @@ namespace MidiConnectionForUnity.StandardDevice
        IMidiModule
     {
         public SynthModuleChannelState[] ChannelState { get; internal set; } = new SynthModuleChannelState[16];
+
+
+        // ChannelModeMessage
+        public bool LocalControl { get; internal set; }
+        public bool OmniOn { get; internal set; }
+        public bool MonoMode { get; internal set; }
+        public byte MonoChMin { get; internal set; }
+        public byte MonoChMax { get; internal set; }
+
+        
     }
 
     public class SynthModuleChannelState
@@ -117,6 +127,7 @@ namespace MidiConnectionForUnity.StandardDevice
         public byte Undefined75 { get; internal set; }
         public byte Undefined76 { get; internal set; }
         public byte Undefined77 { get; internal set; }
+
 
 
         //and more...

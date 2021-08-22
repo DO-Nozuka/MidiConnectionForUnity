@@ -9,7 +9,6 @@ namespace MidiConnectionForUnity.StandardDevice
        IMidiModule
     {
         #region OnMetaEvent
-
         public virtual void OnSequenceNumber(MidiMessage message) { }
         public virtual void OnTextEvent(MidiMessage message) { }
         public virtual void OnCopyrightNotice(MidiMessage message) { }

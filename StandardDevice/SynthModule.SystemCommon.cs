@@ -9,7 +9,6 @@ namespace MidiConnectionForUnity.StandardDevice
        IMidiModule
     {
         #region SystemCommon
-
         public virtual void OnMidiTimeCode(MidiMessage message) { }
         public virtual void OnSongPosition(MidiMessage message) { }
         public virtual void OnSongSelect(MidiMessage message) { }

@@ -8,8 +8,6 @@ namespace MidiConnectionForUnity.StandardDevice
        MidiInDevice,
        IMidiModule
     {
-        #region OnSystemRealtime
-
         public virtual void OnTimingClock(MidiMessage message) { }
         public virtual void OnUndefinedF9(MidiMessage message) { }
         public virtual void OnStart(MidiMessage message) { }
@@ -18,6 +16,5 @@ namespace MidiConnectionForUnity.StandardDevice
         public virtual void OnUndefinedFD(MidiMessage message) { }
         public virtual void OnActiveSensing(MidiMessage message) { }
         public virtual void OnReset(MidiMessage message) { }
-        #endregion
     }
 }
