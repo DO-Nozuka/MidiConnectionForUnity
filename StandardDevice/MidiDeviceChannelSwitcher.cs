@@ -53,10 +53,68 @@ namespace MidiConnectionForUnity.StandardDevice
         public override void OnNext(MidiMessage value)
         {
             UpdateChannelEnable();
+            
             if (_channelEnable[value.Channel])
                 subject.OnNext(value);
             else
                 subSubject.OnNext(value);
+        }
+
+        public void SetEnable(int channel, bool enable)
+        {
+            switch (channel)
+            {
+                case 1:
+                    channel1 = enable;
+                    break;
+                case 2:
+                    channel2 = enable;
+                    break;
+                case 3:
+                    channel3 = enable;
+                    break;
+                case 4:
+                    channel4 = enable;
+                    break;
+                case 5:
+                    channel5 = enable;
+                    break;
+                case 6:
+                    channel6 = enable;
+                    break;
+                case 7:
+                    channel7 = enable;
+                    break;
+                case 8:
+                    channel8 = enable;
+                    break;
+                case 9:
+                    channel9 = enable;
+                    break;
+                case 10:
+                    channel10 = enable;
+                    break;
+                case 11:
+                    channel11 = enable;
+                    break;
+                case 12:
+                    channel12 = enable;
+                    break;
+                case 13:
+                    channel13 = enable;
+                    break;
+                case 14:
+                    channel14 = enable;
+                    break;
+                case 15:
+                    channel15 = enable;
+                    break;
+                case 16:
+                    channel16 = enable;
+                    break;
+            }
+            
+            UpdateChannelEnable();
         }
 
         public void SetAllEnable()
@@ -77,6 +135,8 @@ namespace MidiConnectionForUnity.StandardDevice
             channel14 = true;
             channel15 = true;
             channel16 = true;
+            
+            UpdateChannelEnable();
         }
 
         public void SetAllDisable()
@@ -97,6 +157,8 @@ namespace MidiConnectionForUnity.StandardDevice
             channel14 = false;
             channel15 = false;
             channel16 = false;
+            
+            UpdateChannelEnable();
         }
 
         private void UpdateChannelEnable()
