@@ -113,8 +113,14 @@ namespace MidiConnectionForUnity.StandardDevice
                     channel16 = enable;
                     break;
             }
-            
+
             UpdateChannelEnable();
+        }
+
+        public bool GetEnable(int channel)
+        {
+            UpdateChannelEnable();
+            return _channelEnable[channel];
         }
 
         public void SetAllEnable()
