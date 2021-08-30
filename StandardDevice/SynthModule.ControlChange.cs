@@ -8,7 +8,7 @@ namespace MidiConnectionForUnity.StandardDevice
        MidiInDevice,
        IMidiModule
     {
-
+        #region MSB Method
         public virtual void OnBankSelectMSB(MidiMessage message)
         {
             ChannelState[message.Channel].BankSelect = (message.Data2 << 7) + (ChannelState[message.Channel].BankSelect & 0b01111111);
@@ -35,7 +35,46 @@ namespace MidiConnectionForUnity.StandardDevice
         }
         public virtual void OnDataEntryMSB(MidiMessage message)
         {
-            ChannelState[message.Channel].DataEntry = (message.Data2 << 7) + (ChannelState[message.Channel].DataEntry & 0b01111111);
+            if(ChannelState[message.Channel].IsTargetRegisterdParameter)
+            {
+                byte RPN_MSB = ChannelState[message.Channel].RegisteredParameterNumberMSB;
+                byte RPN_LSB = ChannelState[message.Channel].RegisteredParameterNumberLSB;
+
+                if(RPN_MSB == 0x00 && RPN_LSB == 0x00)
+                {
+                    ChannelState[message.Channel].PitchBendSensitivity
+                        = (message.Data2 << 7)
+                        + (ChannelState[message.Channel].PitchBendSensitivity & 0b01111111);
+                }
+                else if (RPN_MSB == 0x00 && RPN_LSB == 0x01)
+                {
+                    ChannelState[message.Channel].FineTuning
+                        = (message.Data2 << 7)
+                        + (ChannelState[message.Channel].FineTuning & 0b01111111);
+                }
+                else if (RPN_MSB == 0x00 && RPN_LSB == 0x02)
+                {
+                    ChannelState[message.Channel].CoarseTuning
+                        = (message.Data2 << 7)
+                        + (ChannelState[message.Channel].CoarseTuning & 0b01111111);
+                }
+            }
+            else
+            {
+                byte NRPN_MSB = ChannelState[message.Channel].NonRegisteredParameterNumberMSB;
+                byte NRPN_LSB = ChannelState[message.Channel].NonRegisteredParameterNumberLSB;
+                int NRPN = (NRPN_MSB << 7) + NRPN_LSB;
+
+                if(ChannelState[message.Channel].NonRegisterdParameterNumber.ContainsKey(NRPN))
+                {
+                    ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN]
+                        = (message.Data2 << 7) + (ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN] & 0b01111111);
+                }
+                else
+                {
+                    ChannelState[message.Channel].NonRegisterdParameterNumber.Add(NRPN, (message.Data2 << 7) + 0);
+                }
+            }
         }
         public virtual void OnChannelVolumeMSB(MidiMessage message)
         {
@@ -137,6 +176,8 @@ namespace MidiConnectionForUnity.StandardDevice
         {
             ChannelState[message.Channel].Undefined1F = (message.Data2 << 7) + (ChannelState[message.Channel].Undefined1F & 0b01111111);
         }
+        #endregion
+        #region LSB Method
         public virtual void OnBankSelectLSB(MidiMessage message)
         {
             ChannelState[message.Channel].BankSelect = (ChannelState[message.Channel].BankSelect & 0b0011111110000000) + message.Data2;
@@ -163,7 +204,48 @@ namespace MidiConnectionForUnity.StandardDevice
         }
         public virtual void OnDataEntryLSB(MidiMessage message)
         {
-            ChannelState[message.Channel].DataEntry = (ChannelState[message.Channel].DataEntry & 0b0011111110000000) + message.Data2;
+            if (ChannelState[message.Channel].IsTargetRegisterdParameter)
+            {
+                byte RPN_MSB = ChannelState[message.Channel].RegisteredParameterNumberMSB;
+                byte RPN_LSB = ChannelState[message.Channel].RegisteredParameterNumberLSB;
+
+                if (RPN_MSB == 0x00 && RPN_LSB == 0x00)
+                {
+                    ChannelState[message.Channel].PitchBendSensitivity
+                        = (ChannelState[message.Channel].PitchBendSensitivity & 0b0011111110000000)
+                        + message.Data2;
+                        
+                }
+                else if (RPN_MSB == 0x00 && RPN_LSB == 0x01)
+                {
+                    ChannelState[message.Channel].FineTuning
+                        = (ChannelState[message.Channel].FineTuning & 0b0011111110000000)
+                        + message.Data2;
+                }
+                else if (RPN_MSB == 0x00 && RPN_LSB == 0x02)
+                {
+                    ChannelState[message.Channel].CoarseTuning
+                        = (ChannelState[message.Channel].CoarseTuning & 0b0011111110000000)
+                        + message.Data2;
+                }
+            }
+            else
+            {
+                byte NRPN_MSB = ChannelState[message.Channel].NonRegisteredParameterNumberMSB;
+                byte NRPN_LSB = ChannelState[message.Channel].NonRegisteredParameterNumberLSB;
+                int NRPN = (NRPN_MSB << 7) + NRPN_LSB;
+
+                if (ChannelState[message.Channel].NonRegisterdParameterNumber.ContainsKey(NRPN))
+                {
+                    ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN]
+                        = ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN] & 0b0011111110000000
+                        + message.Data2;
+                }
+                else
+                {
+                    ChannelState[message.Channel].NonRegisterdParameterNumber.Add(NRPN, 0 + message.Data2);
+                }
+            }
         }
         public virtual void OnChannelVolumeLSB(MidiMessage message)
         {
@@ -265,6 +347,8 @@ namespace MidiConnectionForUnity.StandardDevice
         {
             ChannelState[message.Channel].Undefined1F = (ChannelState[message.Channel].Undefined1F & 0b0011111110000000) + message.Data2;
         }
+        #endregion
+        #region 1Byte Data
         public virtual void OnHold(MidiMessage message)
         {
             ChannelState[message.Channel].Hold = message.Data2;
@@ -393,13 +477,95 @@ namespace MidiConnectionForUnity.StandardDevice
         {
             ChannelState[message.Channel].Effects5Depth = message.Data2;
         }
+        #endregion
+        #region ParamaterNumber
         public virtual void OnDataIncrement(MidiMessage message)
         {
-            ChannelState[message.Channel].DataIncrement = message.Data2;
+            if (ChannelState[message.Channel].IsTargetRegisterdParameter)
+            {
+                byte RPN_MSB = ChannelState[message.Channel].RegisteredParameterNumberMSB;
+                byte RPN_LSB = ChannelState[message.Channel].RegisteredParameterNumberLSB;
+
+                if (RPN_MSB == 0x00 && RPN_LSB == 0x00)
+                {
+                    ChannelState[message.Channel].PitchBendSensitivity++;
+                    if (ChannelState[message.Channel].PitchBendSensitivity > 0b0011111111111111)
+                        ChannelState[message.Channel].PitchBendSensitivity = 0;
+                }
+                else if (RPN_MSB == 0x00 && RPN_LSB == 0x01)
+                {
+                    ChannelState[message.Channel].FineTuning++;
+                    if (ChannelState[message.Channel].FineTuning > 0b0011111111111111)
+                        ChannelState[message.Channel].FineTuning = 0;
+                }
+                else if (RPN_MSB == 0x00 && RPN_LSB == 0x02)
+                {
+                    ChannelState[message.Channel].CoarseTuning++;
+                    if (ChannelState[message.Channel].CoarseTuning > 0b0011111111111111)
+                        ChannelState[message.Channel].CoarseTuning = 0;
+                }
+            }
+            else
+            {
+                byte NRPN_MSB = ChannelState[message.Channel].NonRegisteredParameterNumberMSB;
+                byte NRPN_LSB = ChannelState[message.Channel].NonRegisteredParameterNumberLSB;
+                int NRPN = (NRPN_MSB << 7) + NRPN_LSB;
+
+                if (ChannelState[message.Channel].NonRegisterdParameterNumber.ContainsKey(NRPN))
+                {
+                    ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN]++;
+                    if (ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN] > 0b0011111111111111)
+                        ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN] = 0;
+                }
+                else
+                {
+                    ChannelState[message.Channel].NonRegisterdParameterNumber.Add(NRPN, 0 + 1);
+                }
+            }
         }
         public virtual void OnDataDecrement(MidiMessage message)
         {
-            ChannelState[message.Channel].DataDecrement = message.Data2;
+            if (ChannelState[message.Channel].IsTargetRegisterdParameter)
+            {
+                byte RPN_MSB = ChannelState[message.Channel].RegisteredParameterNumberMSB;
+                byte RPN_LSB = ChannelState[message.Channel].RegisteredParameterNumberLSB;
+
+                if (RPN_MSB == 0x00 && RPN_LSB == 0x00)
+                {
+                    ChannelState[message.Channel].PitchBendSensitivity--;
+                    if (ChannelState[message.Channel].PitchBendSensitivity < 0)
+                        ChannelState[message.Channel].PitchBendSensitivity = 0b0011111111111111;
+                }
+                else if (RPN_MSB == 0x00 && RPN_LSB == 0x01)
+                {
+                    ChannelState[message.Channel].FineTuning--;
+                    if (ChannelState[message.Channel].FineTuning < 0)
+                        ChannelState[message.Channel].FineTuning = 0b0011111111111111;
+                }
+                else if (RPN_MSB == 0x00 && RPN_LSB == 0x02)
+                {
+                    ChannelState[message.Channel].CoarseTuning--;
+                    if (ChannelState[message.Channel].CoarseTuning < 0)
+                        ChannelState[message.Channel].CoarseTuning = 0b0011111111111111;
+                }
+            }
+            else
+            {
+                byte NRPN_MSB = ChannelState[message.Channel].NonRegisteredParameterNumberMSB;
+                byte NRPN_LSB = ChannelState[message.Channel].NonRegisteredParameterNumberLSB;
+                int NRPN = (NRPN_MSB << 7) + NRPN_LSB;
+
+                if (ChannelState[message.Channel].NonRegisterdParameterNumber.ContainsKey(NRPN))
+                {
+                    ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN]--;
+                    if (ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN] < 0)
+                        ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN] = 0b0011111111111111;
+                }
+                else
+                {
+                    ChannelState[message.Channel].NonRegisterdParameterNumber.Add(NRPN, 0b0011111111111111);
+                }
+            }
         }
         public virtual void OnNonRegisteredParameterNumberLSB(MidiMessage message)
         {
@@ -417,6 +583,8 @@ namespace MidiConnectionForUnity.StandardDevice
         {
             ChannelState[message.Channel].RegisteredParameterNumberMSB = message.Data2;
         }
+        #endregion
+        #region Undefined 1Byte Data
         public virtual void OnUndefined66(MidiMessage message)
         {
             ChannelState[message.Channel].Undefined66 = message.Data2;
@@ -489,5 +657,6 @@ namespace MidiConnectionForUnity.StandardDevice
         {
             ChannelState[message.Channel].Undefined77 = message.Data2;
         }
+        #endregion
     }
 }

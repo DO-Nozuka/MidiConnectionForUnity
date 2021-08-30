@@ -42,7 +42,7 @@ namespace MidiConnectionForUnity.StandardDevice
                 ChannelState[channel].Undefined03 = 0x00;
                 ChannelState[channel].FootController = 0x00;
                 ChannelState[channel].PortamentoTime = 0x00;
-                ChannelState[channel].DataEntry = 0x00;
+                //ChannelState[channel].DataEntry = 0x00;
                 ChannelState[channel].ChannelVolume = 0x00;
                 ChannelState[channel].Balance = 0x00;
                 ChannelState[channel].Undefined09 = 0x00;
@@ -102,8 +102,8 @@ namespace MidiConnectionForUnity.StandardDevice
                 ChannelState[channel].Effects3Depth = 0x00;
                 ChannelState[channel].Effects4Depth = 0x00;
                 ChannelState[channel].Effects5Depth = 0x00;
-                ChannelState[channel].DataIncrement = 0x00;
-                ChannelState[channel].DataDecrement = 0x00;
+                //ChannelState[channel].DataIncrement = 0x00;
+                //ChannelState[channel].DataDecrement = 0x00;
                 ChannelState[channel].NonRegisteredParameterNumberLSB = 0x00;
                 ChannelState[channel].NonRegisteredParameterNumberMSB = 0x00;
                 ChannelState[channel].RegisteredParameterNumberLSB = 0x00;

@@ -1,6 +1,7 @@
 using Dono.Midi.Runtime;
 using Dono.Midi.Runtime.Types;
 using Dono.MidiConnectionForUnity.Base;
+using System.Collections.Generic;
 
 namespace MidiConnectionForUnity.StandardDevice
 {
@@ -17,8 +18,6 @@ namespace MidiConnectionForUnity.StandardDevice
         public bool MonoMode { get; internal set; }
         public byte MonoChMin { get; internal set; }
         public byte MonoChMax { get; internal set; }
-
-        
     }
 
     public class SynthModuleChannelState
@@ -44,7 +43,7 @@ namespace MidiConnectionForUnity.StandardDevice
         public int Undefined03 { get; internal set; }
         public int FootController { get; internal set; }
         public int PortamentoTime { get; internal set; }
-        public int DataEntry { get; internal set; }
+        //public int DataEntry { get; internal set; }
         public int ChannelVolume { get; internal set; }
         public int Balance { get; internal set; }
         public int Undefined09 { get; internal set; }
@@ -103,8 +102,8 @@ namespace MidiConnectionForUnity.StandardDevice
         public byte Effects3Depth { get; internal set; }
         public byte Effects4Depth { get; internal set; }
         public byte Effects5Depth { get; internal set; }
-        public byte DataIncrement { get; internal set; }
-        public byte DataDecrement { get; internal set; }
+        //public byte DataIncrement { get; internal set; }
+        //public byte DataDecrement { get; internal set; }
         public byte NonRegisteredParameterNumberLSB { get; internal set; }
         public byte NonRegisteredParameterNumberMSB { get; internal set; }
         public byte RegisteredParameterNumberLSB { get; internal set; }
@@ -128,8 +127,24 @@ namespace MidiConnectionForUnity.StandardDevice
         public byte Undefined76 { get; internal set; }
         public byte Undefined77 { get; internal set; }
 
-
-
+        // RegisteredParameter / NonRegisterdParamater
+        /// <summary>
+        /// ílÇÃê›íËÇRegisteredParameterÇ…Ç∑ÇÈÇ©Ç«Ç§Ç©
+        /// </summary>
+        public bool IsTargetRegisterdParameter = true;
+        /// <summary>
+        /// MSB:0x00, LSB:0x00
+        /// </summary>
+        public int PitchBendSensitivity { get; internal set; }
+        /// <summary>
+        /// MSB:0x00, LSB:0x01
+        /// </summary>
+        public int FineTuning { get; internal set; }
+        /// <summary>
+        /// MSB:0x00, LSB:0x02
+        /// </summary>
+        public int CoarseTuning { get; internal set; }
+        public Dictionary<int, int> NonRegisterdParameterNumber = new Dictionary<int, int>();
         //and more...
     }
 }
