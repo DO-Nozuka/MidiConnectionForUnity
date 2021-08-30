@@ -112,7 +112,7 @@ namespace MidiConnectionForUnity.StandardDevice
                     OnBankSelectLSB(message);
                     break;
                 case ControlChangeType.ModulationWheelLSB:
-                    OnModulationWheelLSB(message);
+                    OnModulationLSB(message);
                     break;
                 case ControlChangeType.BreathControllerLSB:
                     OnBreathControllerLSB(message);
