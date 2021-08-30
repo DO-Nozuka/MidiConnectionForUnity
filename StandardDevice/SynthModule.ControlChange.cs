@@ -65,14 +65,14 @@ namespace MidiConnectionForUnity.StandardDevice
                 byte NRPN_LSB = ChannelState[message.Channel].NonRegisteredParameterNumberLSB;
                 int NRPN = (NRPN_MSB << 7) + NRPN_LSB;
 
-                if(ChannelState[message.Channel].NonRegisterdParameterNumber.ContainsKey(NRPN))
+                if(ChannelState[message.Channel].NonRegisterdParameter.ContainsKey(NRPN))
                 {
-                    ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN]
-                        = (message.Data2 << 7) + (ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN] & 0b01111111);
+                    ChannelState[message.Channel].NonRegisterdParameter[NRPN]
+                        = (message.Data2 << 7) + (ChannelState[message.Channel].NonRegisterdParameter[NRPN] & 0b01111111);
                 }
                 else
                 {
-                    ChannelState[message.Channel].NonRegisterdParameterNumber.Add(NRPN, (message.Data2 << 7) + 0);
+                    ChannelState[message.Channel].NonRegisterdParameter.Add(NRPN, (message.Data2 << 7) + 0);
                 }
             }
         }
@@ -235,15 +235,15 @@ namespace MidiConnectionForUnity.StandardDevice
                 byte NRPN_LSB = ChannelState[message.Channel].NonRegisteredParameterNumberLSB;
                 int NRPN = (NRPN_MSB << 7) + NRPN_LSB;
 
-                if (ChannelState[message.Channel].NonRegisterdParameterNumber.ContainsKey(NRPN))
+                if (ChannelState[message.Channel].NonRegisterdParameter.ContainsKey(NRPN))
                 {
-                    ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN]
-                        = ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN] & 0b0011111110000000
+                    ChannelState[message.Channel].NonRegisterdParameter[NRPN]
+                        = ChannelState[message.Channel].NonRegisterdParameter[NRPN] & 0b0011111110000000
                         + message.Data2;
                 }
                 else
                 {
-                    ChannelState[message.Channel].NonRegisterdParameterNumber.Add(NRPN, 0 + message.Data2);
+                    ChannelState[message.Channel].NonRegisterdParameter.Add(NRPN, 0 + message.Data2);
                 }
             }
         }
@@ -511,15 +511,15 @@ namespace MidiConnectionForUnity.StandardDevice
                 byte NRPN_LSB = ChannelState[message.Channel].NonRegisteredParameterNumberLSB;
                 int NRPN = (NRPN_MSB << 7) + NRPN_LSB;
 
-                if (ChannelState[message.Channel].NonRegisterdParameterNumber.ContainsKey(NRPN))
+                if (ChannelState[message.Channel].NonRegisterdParameter.ContainsKey(NRPN))
                 {
-                    ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN]++;
-                    if (ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN] > 0b0011111111111111)
-                        ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN] = 0;
+                    ChannelState[message.Channel].NonRegisterdParameter[NRPN]++;
+                    if (ChannelState[message.Channel].NonRegisterdParameter[NRPN] > 0b0011111111111111)
+                        ChannelState[message.Channel].NonRegisterdParameter[NRPN] = 0;
                 }
                 else
                 {
-                    ChannelState[message.Channel].NonRegisterdParameterNumber.Add(NRPN, 0 + 1);
+                    ChannelState[message.Channel].NonRegisterdParameter.Add(NRPN, 0 + 1);
                 }
             }
         }
@@ -555,15 +555,15 @@ namespace MidiConnectionForUnity.StandardDevice
                 byte NRPN_LSB = ChannelState[message.Channel].NonRegisteredParameterNumberLSB;
                 int NRPN = (NRPN_MSB << 7) + NRPN_LSB;
 
-                if (ChannelState[message.Channel].NonRegisterdParameterNumber.ContainsKey(NRPN))
+                if (ChannelState[message.Channel].NonRegisterdParameter.ContainsKey(NRPN))
                 {
-                    ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN]--;
-                    if (ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN] < 0)
-                        ChannelState[message.Channel].NonRegisterdParameterNumber[NRPN] = 0b0011111111111111;
+                    ChannelState[message.Channel].NonRegisterdParameter[NRPN]--;
+                    if (ChannelState[message.Channel].NonRegisterdParameter[NRPN] < 0)
+                        ChannelState[message.Channel].NonRegisterdParameter[NRPN] = 0b0011111111111111;
                 }
                 else
                 {
-                    ChannelState[message.Channel].NonRegisterdParameterNumber.Add(NRPN, 0b0011111111111111);
+                    ChannelState[message.Channel].NonRegisterdParameter.Add(NRPN, 0b0011111111111111);
                 }
             }
         }

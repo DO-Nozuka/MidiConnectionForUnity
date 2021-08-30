@@ -144,7 +144,7 @@ namespace MidiConnectionForUnity.StandardDevice
         /// MSB:0x00, LSB:0x02
         /// </summary>
         public int CoarseTuning { get; internal set; }
-        public Dictionary<int, int> NonRegisterdParameterNumber = new Dictionary<int, int>();
+        public Dictionary<int, int> NonRegisterdParameter = new Dictionary<int, int>();
         //and more...
     }
 }
