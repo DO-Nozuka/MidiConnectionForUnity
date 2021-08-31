@@ -136,6 +136,16 @@ namespace MidiConnectionForUnity.StandardDevice
         /// MSB:0x00, LSB:0x00
         /// </summary>
         public int PitchBendSensitivity { get; internal set; }
+        public float PitchBendSensitivityByCent
+        {
+            get
+            {
+                var PitchBendSensitivityMSB = PitchBendSensitivity >> 7;
+                var PitchBendSensitivityLSB = PitchBendSensitivity & 0b01111111;
+
+                return PitchBendSensitivityMSB * 100f + PitchBendSensitivityLSB * 100f / 127f;
+            }
+        }
         /// <summary>
         /// MSB:0x00, LSB:0x01
         /// </summary>
