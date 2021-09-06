@@ -282,8 +282,8 @@ namespace MidiConnectionForUnity.StandardDevice
                 case ControlChangeType.Undefined59:
                     OnUndefined59(message);
                     break;
-                case ControlChangeType.Undefined60:
-                    OnUndefined60(message);
+                case ControlChangeType.Undefined5A:
+                    OnUndefined5A(message);
                     break;
                 case ControlChangeType.Effects1Depth:
                     OnEffects1Depth(message);

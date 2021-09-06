@@ -517,9 +517,9 @@ namespace MidiConnectionForUnity.StandardDevice
         {
             ChannelState[message.Channel].Undefined59 = message.Data2;
         }
-        public virtual void OnUndefined60(MidiMessage message)
+        public virtual void OnUndefined5A(MidiMessage message)
         {
-            ChannelState[message.Channel].Undefined60 = message.Data2;
+            ChannelState[message.Channel].Undefined5A = message.Data2;
         }
         public virtual void OnEffects1Depth(MidiMessage message)
         {

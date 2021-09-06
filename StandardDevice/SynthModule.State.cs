@@ -96,7 +96,7 @@ namespace MidiConnectionForUnity.StandardDevice
         public byte Undefined57 { get; internal set; }
         public byte Undefined58 { get; internal set; }
         public byte Undefined59 { get; internal set; }
-        public byte Undefined60 { get; internal set; }
+        public byte Undefined5A { get; internal set; }
         public byte Effects1Depth { get; internal set; }
         public byte Effects2Depth { get; internal set; }
         public byte Effects3Depth { get; internal set; }

@@ -96,7 +96,7 @@ namespace MidiConnectionForUnity.StandardDevice
                 ChannelState[channel].Undefined57 = 0x00;
                 ChannelState[channel].Undefined58 = 0x00;
                 ChannelState[channel].Undefined59 = 0x00;
-                ChannelState[channel].Undefined60 = 0x00;
+                ChannelState[channel].Undefined5A = 0x00;
                 ChannelState[channel].Effects1Depth = 0x00;
                 ChannelState[channel].Effects2Depth = 0x00;
                 ChannelState[channel].Effects3Depth = 0x00;
