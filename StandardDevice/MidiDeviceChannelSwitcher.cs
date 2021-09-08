@@ -53,7 +53,7 @@ namespace MidiConnectionForUnity.StandardDevice
         public override void OnNext(MidiMessage value)
         {
             UpdateChannelEnable();
-            
+
             if (_channelEnable[value.Channel])
                 subject.OnNext(value);
             else
@@ -64,52 +64,52 @@ namespace MidiConnectionForUnity.StandardDevice
         {
             switch (channel)
             {
-                case 1:
+                case 0:
                     channel1 = enable;
                     break;
-                case 2:
+                case 1:
                     channel2 = enable;
                     break;
-                case 3:
+                case 2:
                     channel3 = enable;
                     break;
-                case 4:
+                case 3:
                     channel4 = enable;
                     break;
-                case 5:
+                case 4:
                     channel5 = enable;
                     break;
-                case 6:
+                case 5:
                     channel6 = enable;
                     break;
-                case 7:
+                case 6:
                     channel7 = enable;
                     break;
-                case 8:
+                case 7:
                     channel8 = enable;
                     break;
-                case 9:
+                case 8:
                     channel9 = enable;
                     break;
-                case 10:
+                case 9:
                     channel10 = enable;
                     break;
-                case 11:
+                case 10:
                     channel11 = enable;
                     break;
-                case 12:
+                case 11:
                     channel12 = enable;
                     break;
-                case 13:
+                case 12:
                     channel13 = enable;
                     break;
-                case 14:
+                case 13:
                     channel14 = enable;
                     break;
-                case 15:
+                case 14:
                     channel15 = enable;
                     break;
-                case 16:
+                case 15:
                     channel16 = enable;
                     break;
             }
@@ -141,7 +141,7 @@ namespace MidiConnectionForUnity.StandardDevice
             channel14 = true;
             channel15 = true;
             channel16 = true;
-            
+
             UpdateChannelEnable();
         }
 
@@ -163,7 +163,7 @@ namespace MidiConnectionForUnity.StandardDevice
             channel14 = false;
             channel15 = false;
             channel16 = false;
-            
+
             UpdateChannelEnable();
         }
 
