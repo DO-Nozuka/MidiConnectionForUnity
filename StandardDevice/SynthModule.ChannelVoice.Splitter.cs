@@ -1,11 +1,11 @@
 using Dono.Midi.Runtime;
 using Dono.Midi.Runtime.Types;
-using Dono.MidiConnectionForUnity.Base;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MidiConnectionForUnity.StandardDevice
+namespace Dono.MidiConnectionForUnity
 {
     public partial class SynthModule :
        MidiInDevice,

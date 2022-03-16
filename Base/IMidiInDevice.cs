@@ -1,7 +1,7 @@
 using Dono.Midi.Runtime;
 using System;
 
-namespace Dono.MidiConnectionForUnity.Base
+namespace Dono.MidiConnectionForUnity
 {
     public interface IMidiInDevice : IObserver<MidiMessage> { }
 }

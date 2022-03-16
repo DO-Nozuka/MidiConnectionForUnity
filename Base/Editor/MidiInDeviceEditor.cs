@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-namespace Dono.MidiConnectionForUnity.Base
+namespace Dono.MidiConnectionForUnity
 {
     [CustomEditor(typeof(MidiInDevice), true)]
     public class MidiInDeviceEditor : Editor

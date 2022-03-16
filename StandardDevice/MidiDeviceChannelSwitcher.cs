@@ -1,4 +1,4 @@
-using Dono.MidiConnectionForUnity.Base;
+
 using Dono.Midi.Runtime;
 using System;
 using System.Collections;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-namespace MidiConnectionForUnity.StandardDevice
+namespace Dono.MidiConnectionForUnity
 {
     public class MidiDeviceChannelSwitcher : MidiInOutDevice
     {

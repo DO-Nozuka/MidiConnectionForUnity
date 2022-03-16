@@ -1,9 +1,9 @@
-using Dono.MidiConnectionForUnity.Base;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MidiConnectionForUnity.StandardDevice
+namespace Dono.MidiConnectionForUnity
 {
     public class MessageGenerator : MidiOutDevice
     {

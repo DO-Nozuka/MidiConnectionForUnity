@@ -1,5 +1,5 @@
 {
-    "name": "MidiConnectionForUnity.Base",
+    "name": "Dono.MidiConnectionForUnity",
     "rootNamespace": "",
     "references": [
         "GUID:e348eb0bc7ba495499081c854aa42f2d",

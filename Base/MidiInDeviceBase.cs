@@ -1,6 +1,6 @@
 
 
-namespace Dono.MidiConnectionForUnity.Base
+namespace Dono.MidiConnectionForUnity
 {
     public abstract class MidiInDeviceBase : MidiDevice
     {

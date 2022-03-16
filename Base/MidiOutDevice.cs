@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-namespace Dono.MidiConnectionForUnity.Base
+namespace Dono.MidiConnectionForUnity
 {
     public abstract class MidiOutDevice : MidiDevice
     {

@@ -1,11 +1,11 @@
-using Dono.MidiConnectionForUnity.Base;
+
 using Dono.Midi.Runtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace MidiConnectionForUnity.StandardDevice
+namespace Dono.MidiConnectionForUnity
 {
     public class MessageChannelFilter : MidiInOutDevice
     {

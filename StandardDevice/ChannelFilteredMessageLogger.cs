@@ -1,8 +1,8 @@
-using Dono.MidiConnectionForUnity.Base;
+
 using Dono.Midi.Runtime;
 using UnityEngine;
 
-namespace MidiConnectionForUnity.StandardDevice
+namespace Dono.MidiConnectionForUnity
 {
     public class ChannelFilteredMessageLogger : MidiInDevice
     {
