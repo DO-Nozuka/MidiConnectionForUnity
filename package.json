@@ -1,7 +1,7 @@
 {
   "author": "Daiki Onozuka",
   "dependencies": {
-    "com.donozuka.midi": "1.0.0"
+    "com.donozuka.midi": "2.0.0"
   },
   "description": "Midi Connection For Unity(with Dono.Minis)",
   "displayName": "MidiConnectionForUnity",
@@ -10,5 +10,5 @@
   "name": "com.donozuka.midiconnectionforunity",
   "repository": "github:DO-Nozuka/MidiConnectionForUnity",
   "unity": "2020.1",
-  "version": "0.3.2"
+  "version": "2.0.0"
 }

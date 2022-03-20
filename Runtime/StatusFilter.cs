@@ -1,4 +1,4 @@
-using Dono.Midi.Runtime;
+using Dono.Midi;
 using UnityEngine;
 
 #if UNITY_EDITOR

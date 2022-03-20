@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Dono.Midi.Runtime;
-using Dono.Midi.Runtime.Types;
+using Dono.Midi;
+using Dono.Midi.Types;
 
 #if UNITY_EDITOR
 using UnityEditor;
