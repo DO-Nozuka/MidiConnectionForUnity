@@ -1,5 +1,4 @@
 using Dono.Midi;
-using Dono.Midi.Types;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -22,8 +21,8 @@ namespace Dono.MidiConnectionForUnity
 
         public override void OnNext(MidiMessage value)
         {
-            if(value.messageType == Midi.Types.MessageType.ChannelMode 
-                || value.messageType == Midi.Types.MessageType.ChannelVoice)
+            if(value.messageType == Midi.MessageType.ChannelMode 
+                || value.messageType == Midi.MessageType.ChannelVoice)
             {
                 byte channel = value.Channel;
                 if (_channelEnable[channel])
