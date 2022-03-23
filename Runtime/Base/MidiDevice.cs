@@ -1,6 +1,5 @@
 using Dono.Midi;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
@@ -21,7 +20,7 @@ namespace Dono.MidiConnectionForUnity
         public abstract string DefaultDeviceName { get; }
 
         public string GetDeviceName() => DeviceName;
-        
+
         public void Reset()
         {
             DeviceName = DefaultDeviceName;
@@ -59,7 +58,7 @@ namespace Dono.MidiConnectionForUnity
         {
             outSubject.OnNext(message);
 
-            if(showOutLog && IsOutEnable())
+            if (showOutLog && IsOutEnable())
                 Debug.Log(message);
         }
         private IDisposable outDisposable = null;
@@ -154,10 +153,10 @@ namespace Dono.MidiConnectionForUnity
                 _target.showOutLog = EditorGUILayout.Toggle("Show Output Log", _target.showOutLog);
 
                 // OutPort
-                if(_target.IsOutEnable())
+                if (_target.IsOutEnable())
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("outPort"), true);
                 // ThruPort
-                if(_target.IsInEnable())
+                if (_target.IsInEnable())
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("thruPort"), true);
             }
         }

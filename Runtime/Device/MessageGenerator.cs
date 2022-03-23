@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Dono.Midi;
 
@@ -61,16 +59,16 @@ namespace Dono.MidiConnectionForUnity
             public override void OnInspectorGUI()
             {
                 MessageGenerator _target = target as MessageGenerator;
-                
+
                 base.OnInspectorGUI();
 
                 EditorGUILayout.Separator();
 
                 EditorGUILayout.LabelField("Common Settings");
                 _target.channel = (byte)EditorGUILayout.IntSlider("Channel", _target.channel, 0, 15);
-                
+
                 EditorGUILayout.Separator();
-                
+
                 // Note On/Off
                 EditorGUILayout.LabelField("Note Off", "0x8n kk vv");
                 EditorGUILayout.LabelField("Note On", "0x9n kk vv");
@@ -80,19 +78,19 @@ namespace Dono.MidiConnectionForUnity
                 if (GUILayout.Button("Note Off"))
                 {
                     _target.SendNoteOff(_target.noteNumber, _target.noteOffVelocity);
-                }                
+                }
                 if (GUILayout.Button("Note On"))
                 {
                     _target.SendNoteOn(_target.noteNumber, _target.noteOnVelocity);
                 }
 
                 EditorGUILayout.Separator();
-                
+
                 // 1Byte CC
                 EditorGUILayout.LabelField("1Byte CC", "0xBn cc vv");
                 _target._1ccNumber = (byte)EditorGUILayout.IntSlider("Number", _target._1ccNumber, 0, 119);
                 _target._1ccValue = (byte)EditorGUILayout.IntSlider("Value", _target._1ccValue, 0, 127);
-                if(GUILayout.Button("Send 1Byte CC"))
+                if (GUILayout.Button("Send 1Byte CC"))
                 {
                     _target.Send1ByteCC(_target._1ccNumber, _target._1ccValue);
                 }

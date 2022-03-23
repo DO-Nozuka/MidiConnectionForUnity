@@ -21,7 +21,7 @@ namespace Dono.MidiConnectionForUnity
 
         public override void OnNext(MidiMessage value)
         {
-            if(value.messageType == Midi.MessageType.ChannelMode 
+            if (value.messageType == Midi.MessageType.ChannelMode
                 || value.messageType == Midi.MessageType.ChannelVoice)
             {
                 byte channel = value.Channel;
@@ -59,8 +59,8 @@ namespace Dono.MidiConnectionForUnity
                 base.OnInspectorGUI();
 
                 EditorGUILayout.LabelField("Channel Enable");
-                for(int i = 0; i < _target._channelEnable.Length; i++)
-                    _target._channelEnable[i] = EditorGUILayout.Toggle($"Channel {i+1}", _target._channelEnable[i]);
+                for (int i = 0; i < _target._channelEnable.Length; i++)
+                    _target._channelEnable[i] = EditorGUILayout.Toggle($"Channel {i + 1}", _target._channelEnable[i]);
 
                 EditorGUILayout.LabelField("Option");
                 _target.nonChannelMessageOutput = EditorGUILayout.Toggle("Channel", _target.nonChannelMessageOutput);

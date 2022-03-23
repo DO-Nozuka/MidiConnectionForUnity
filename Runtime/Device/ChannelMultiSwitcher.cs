@@ -1,6 +1,5 @@
 using Dono.Midi;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
@@ -22,14 +21,14 @@ namespace Dono.MidiConnectionForUnity
         {
             if (!value.IsChannelMessage)
             {
-                foreach(var outport in outPortSubjects)
+                foreach (var outport in outPortSubjects)
                 {
                     outport.OnNext(value);
                 }
             }
             else
             {
-                if(value.controlChangeType == (ControlChangeType)switchCCNum)
+                if (value.controlChangeType == (ControlChangeType)switchCCNum)
                 {
                     channelToOutPort[value.Channel] = value.Data2;
                 }
@@ -53,13 +52,13 @@ namespace Dono.MidiConnectionForUnity
         public new void Start()        //Caution: Hide base Start()
         {
             base.Start();
-            if(outPortSubjects == null)
+            if (outPortSubjects == null)
             {
-                outPortSubjects = new List<Subject<MidiMessage>>(); 
+                outPortSubjects = new List<Subject<MidiMessage>>();
             }
             else
             {
-                for(int i = 0; i < outPortSubjects.Count; i++)
+                for (int i = 0; i < outPortSubjects.Count; i++)
                 {
                     outPortSubjects[i].OnCompleted();
                     outPortSubjects[i].Dispose();
@@ -67,12 +66,12 @@ namespace Dono.MidiConnectionForUnity
                 outPortSubjects.Clear();
             }
 
-            for(int i = 0; i < portCount; i++)
+            for (int i = 0; i < portCount; i++)
             {
                 outPortSubjects.Add(new Subject<MidiMessage>());
 
                 var outPort = outPorts(i);
-                for(int j = 0; j < outPort.Count; j++)
+                for (int j = 0; j < outPort.Count; j++)
                 {
                     outPortSubjects[i].Subscribe(outPort[j]);
                 }

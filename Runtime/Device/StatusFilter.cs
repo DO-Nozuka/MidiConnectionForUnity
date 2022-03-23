@@ -30,7 +30,7 @@ namespace Dono.MidiConnectionForUnity
         public override void OnNext(MidiMessage value)
         {
             UpdateStatusEnables();
-            if(_statusEnables[value.Status & 0b00000111])
+            if (_statusEnables[value.Status & 0b00000111])
             {
                 SendMessage(value);
             }
