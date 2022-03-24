@@ -52,7 +52,7 @@ namespace Dono.MidiConnectionForUnity
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(CheckLamp), true)]
-    public class MidiDeviceEditor : Editor
+    public class CheckLampEditor : Editor
     {
         public override void OnInspectorGUI()
         {
