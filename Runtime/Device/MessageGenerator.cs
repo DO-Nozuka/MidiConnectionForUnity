@@ -116,6 +116,6 @@ namespace Dono.MidiConnectionForUnity
                 }
             }
         }
-    }
 #endif
+    }
 }
