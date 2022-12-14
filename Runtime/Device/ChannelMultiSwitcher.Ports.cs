@@ -139,6 +139,7 @@ namespace Dono.MidiConnectionForUnity
         [SerializeField] private List<MidiDevice> outPorts126 = new List<MidiDevice>();
         [SerializeField] private List<MidiDevice> outPorts127 = new List<MidiDevice>();
 
+        public byte GetOutPortNumber(byte channel) => channelToOutPort[channel];
         private List<MidiDevice> outPorts(int val)
         {
             switch (val)
