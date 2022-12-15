@@ -23,7 +23,12 @@ namespace Dono.MidiConnectionForUnity
         // 0xCn Program
         public Action<Midi1ByteValue> ProgramChangeCallback;
         public Midi1ByteValue GetProgramChange(byte ch) => channelState[ch].Program;
-        public void SetProgram(byte ch, byte value) => channelState[ch].Program.SetValue(value);
+        public void SetProgram(byte ch, byte value)
+        {
+            channelState[ch].Program.SetValue(value);
+            var val = channelState[ch].Program;
+            ProgramChangeCallback?.Invoke(val);
+        }
         private void OnProgramChange(MidiMessage message)
         {
             var ch = message.Channel;
@@ -33,8 +38,18 @@ namespace Dono.MidiConnectionForUnity
         // CC:0x00 Bank
         public Action<Midi2ByteValue> BankChangeCallback;
         public Midi2ByteValue GetBank(byte ch) => channelState[ch].DoubleCC.BankSelect;
-        public void SetBankMSB(byte ch, byte msb) => channelState[ch].DoubleCC.BankSelect.SetMsb(msb);
-        public void SetBankLSB(byte ch, byte lsb) => channelState[ch].DoubleCC.BankSelect.SetLsb(lsb);
+        public void SetBankMSB(byte ch, byte msb)
+        {
+            channelState[ch].DoubleCC.BankSelect.SetMsb(msb);
+            var val = channelState[ch].DoubleCC.BankSelect;
+            BankChangeCallback?.Invoke(val);
+        }
+        public void SetBankLSB(byte ch, byte lsb)
+        {
+            channelState[ch].DoubleCC.BankSelect.SetLsb(lsb);
+            var val = channelState[ch].DoubleCC.BankSelect;
+            BankChangeCallback?.Invoke(val);
+        }
         private void OnBankChange(MidiMessage message)
         {
             var ch = message.Channel;
@@ -43,27 +58,41 @@ namespace Dono.MidiConnectionForUnity
         }
 
         // CC:0x07 Volume 
-        public Action<byte, int> VolumeChangeCallback;
+        public Action<byte, Midi2ByteValue> VolumeChangeCallback;
         public Midi2ByteValue GetVolume(byte ch) => channelState[ch].DoubleCC.ChannelVolume;
-        public void SetVolumeRate(byte ch, float rate) => channelState[ch].DoubleCC.ChannelVolume.SetRate(rate);
-        public void SetVolumeValue(byte ch, int value) => channelState[ch].DoubleCC.ChannelVolume.SetValue(value);
+        public void SetVolumeRate(byte ch, float rate)
+        {
+            channelState[ch].DoubleCC.ChannelVolume.SetRate(rate);
+            VolumeChangeCallback?.Invoke(ch, channelState[ch].DoubleCC.ChannelVolume);
+        }
+        public void SetVolumeValue(byte ch, int value)
+        {
+            channelState[ch].DoubleCC.ChannelVolume.SetValue(value);
+            VolumeChangeCallback?.Invoke(ch, channelState[ch].DoubleCC.ChannelVolume);
+        }
         private void OnVolumeChange(MidiMessage message)
         {
             var ch = message.Channel;
-            var val = channelState[ch].DoubleCC.ChannelVolume.Value;
-            VolumeChangeCallback?.Invoke(ch, val);
+            VolumeChangeCallback?.Invoke(ch, channelState[ch].DoubleCC.ChannelVolume);
         }
 
         // CC:0x0B Expression
-        public Action<byte, int> ExpressionChangeCallback;
+        public Action<byte, Midi2ByteValue> ExpressionChangeCallback;
         public Midi2ByteValue GetExpression(byte ch) => channelState[ch].DoubleCC.ExpressionController;
-        public void SetExpressionRate(byte ch, float rate) => channelState[ch].DoubleCC.ExpressionController.SetRate(rate);
-        public void SetExpressionValue(byte ch, int value) => channelState[ch].DoubleCC.ExpressionController.SetValue(value);
+        public void SetExpressionRate(byte ch, float rate)
+        {
+            channelState[ch].DoubleCC.ExpressionController.SetRate(rate);
+            ExpressionChangeCallback?.Invoke(ch, channelState[ch].DoubleCC.ExpressionController);
+        }
+        public void SetExpressionValue(byte ch, int value)
+        {
+            channelState[ch].DoubleCC.ExpressionController.SetValue(value);
+            ExpressionChangeCallback?.Invoke(ch, channelState[ch].DoubleCC.ExpressionController);
+        }
         private void OnExpressionChange(MidiMessage message)
         {
             var ch = message.Channel;
-            var val = channelState[ch].DoubleCC.ExpressionController.Value;
-            ExpressionChangeCallback?.Invoke(ch, val);
+            ExpressionChangeCallback?.Invoke(ch, channelState[ch].DoubleCC.ExpressionController);
         }
 
         // DataEntry
@@ -74,15 +103,19 @@ namespace Dono.MidiConnectionForUnity
             var RPNLSB = channelState[ch].SingleCC.RegisteredParameterNumberLSB.Value;
             if (RPNMSB == 0x00 && RPNLSB == 0x00)    // PitchBendRange
             {
-                var val = channelState[message.Channel].Parameter.PitchBendSensitivity.Value;
-                PitchBendRangeChangeCallback?.Invoke(ch, val);
+                PitchBendRangeChangeCallback?.Invoke(ch, channelState[ch].Parameter.PitchBendSensitivity);
             }
         }
 
         // RPN
-        public Action<byte, int> PitchBendRangeChangeCallback;
+        public Action<byte, PitchBendSensitivity> PitchBendRangeChangeCallback;
         public PitchBendSensitivity GetPitchBendRange(byte ch) => channelState[ch].Parameter.PitchBendSensitivity;
-        public void SetPitchRange(byte ch, int value) => channelState[ch].Parameter.PitchBendSensitivity.SetValue(value);
+        public void SetPitchRange(byte ch, int value)
+        {
+            channelState[ch].Parameter.PitchBendSensitivity.SetValue(value);
+            var val = channelState[ch].Parameter.PitchBendSensitivity.Value;
+            PitchBendRangeChangeCallback?.Invoke(ch, channelState[ch].Parameter.PitchBendSensitivity);
+        }
 
 
         public SynthModule()
